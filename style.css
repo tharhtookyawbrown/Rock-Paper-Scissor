@@ -1,0 +1,313 @@
+/* General Reset and Pixel Font Simulation */
+body {
+    background-color: #000;
+    color: #e0f7fa; /* Neon cyan text for general readability */
+    font-family: 'Press Start 2P', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+}
+
+/* --- VIDEO BACKGROUND & AUDIO HIDE --- */
+#background-video {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover; 
+    z-index: -100; 
+}
+
+#game-bgm {
+    display: none;
+}
+
+/* Round Announcement Overlay */
+.hidden {
+    display: none !important; 
+}
+
+#round-announcement {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 999; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#announcement-text {
+    font-size: 2.5em;
+    color: #ff0000;
+    text-shadow: 4px 4px #000;
+    border: 4px solid #00f0ff;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.9);
+    box-shadow: 0 0 15px #00f0ff, 0 0 30px rgba(0, 240, 255, 0.5); 
+    animation: flash-border 0.5s infinite alternate;
+}
+
+@keyframes flash-border {
+    from { border-color: #ff0000; box-shadow: 0 0 10px #ff0000; }
+    to { border-color: #ffa500; box-shadow: 0 0 20px #ffa500; }
+}
+
+
+/* Music Control Button (Top Left) */
+#music-control {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    right: auto;
+    padding: 8px 15px;
+    font-size: 0.8em;
+    z-index: 15;
+    
+    background-color: #1a1a1a; 
+    border: 3px solid #00f0ff; 
+    color: #00f0ff;
+    box-shadow: 0 0 5px rgba(0, 240, 255, 0.7);
+    transition: all 0.1s ease-in-out; 
+    font-family: 'Press Start 2P', monospace;
+    cursor: pointer;
+}
+
+#music-control:hover {
+    background-color: #00f0ff;
+    color: #000;
+    box-shadow: 0 0 15px #00f0ff;
+}
+
+#music-control:active {
+    border-color: #ff0077; 
+}
+
+
+/* Game Container - The "Arcade Cabinet" (CYBERPUNK LOOK) */
+#game-container {
+    width: 100%;
+    max-width: 500px;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+    
+    border: 4px solid #00f0ff; 
+    box-shadow: 0 0 15px #00f0ff, 0 0 30px rgba(0, 240, 255, 0.5); 
+    
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+h1 {
+    font-size: 1.5em;
+    color: #00ffaa; 
+    text-shadow: 2px 2px #000;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 2em; /* Adjusted back to 1em from 2em for consistency */
+    color: #00f0ff; 
+}
+
+/* Buttons and Icons (INDIVIDUAL IMAGE IMPLEMENTATION) */
+button {
+    font-family: 'Press Start 2P', monospace;
+    background-color: #1a1a1a; 
+    color: #00f0ff; 
+    border: 3px solid #00f0ff; 
+    margin: 5px;
+    cursor: pointer;
+    font-size: 0.8em; /* Adjusted back to 0.8em */
+    box-shadow: 0 0 5px rgba(0, 240, 255, 0.7); 
+    transition: all 0.1s ease-in-out;
+
+    /* Base styling for icon placement (used by choices menu buttons) */
+    position: relative; 
+    padding: 10px 15px 10px 60px; 
+    text-align: left; 
+    white-space: nowrap; 
+}
+
+/* --- FIX: 「アリーナ開始」ボタンの中央配置 --- */
+#name-screen button {
+    text-align: center; /* 中央配置 */
+    padding-left: 15px; /* アイコン用パディングを標準に戻す */
+    padding-right: 15px;
+    font-size: 0.8em; /* 念のためフォントサイズを再設定 */
+}
+
+/* 選択ボタンのアイコン設定 */
+#choices-menu button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    
+    /* Image dimensions */
+    width: 35px;  
+    height: 35px; 
+    
+    background-size: contain; 
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* 1. Rock (グー) - Individual File */
+#btn-rock::before {
+    background-image: url('images/rockpixel.png'); 
+}
+
+/* 2. Paper (パー) - Individual File */
+#btn-paper::before {
+    background-image: url('images/paperpixel.png');
+}
+
+/* 3. チョキ (Scissors) - Individual File */
+#btn-scissors::before {
+    background-image: url('images/scissorspixel.png');
+}
+
+
+/* Button Hover/Active States */
+button:hover {
+    background-color: #00f0ff; 
+    color: #000; 
+    box-shadow: 0 0 15px #00f0ff;
+}
+
+button:active {
+    box-shadow: none;
+    transform: translate(3px, 3px);
+    border-color: #ff0077; 
+}
+
+/* Input Styling Fixes */
+input[type="text"] {
+    font-family: 'Press Start 2P', monospace;
+    background-color: #000;
+    color: #00ffaa; 
+    caret-color: #ffcc00; 
+    border: 4px solid #00f0ff;
+    padding: 10px;
+    margin-bottom: 20px;
+    width: 80%;
+    max-width: 300px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 0.8em;
+    text-indent: 1px;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border: 4px solid #ff0077;
+}
+
+/* Rank Progress Bar and Player Info */
+#player-info {
+    background-color: #1a1a1a; 
+    border: 2px solid #00f0ff;
+    padding: 5px;
+    margin-bottom: 15px;
+    font-size: 0.7em;
+    color: #00f0ff;
+}
+
+.rank-progress-bar-container {
+    width: 90%;
+    height: 8px;
+    background-color: #000;
+    border: 1px solid #00f0ff;
+    margin: 10px auto 0;
+    box-shadow: inset 0 0 5px #00f0ff;
+}
+
+#rank-progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #00ffaa; 
+    transition: width 0.5s ease-out;
+}
+
+/* Match/Result Styling */
+#match-message {
+    font-size: 1em;
+    color: #ff0077; 
+    min-height: 20px;
+    margin-bottom: 20px;
+}
+
+#match-area {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+/* --- RESULT ICON CONTAINER FIX --- */
+/* Result container for image alignment */
+.choice-display p {
+    font-size: 0; 
+    line-height: 1; 
+    padding: 5px 0;
+}
+
+/* --- RESULT IMAGE STYLING (FIXED SIZE) --- */
+.choice-result-img {
+    width: 100px; /* NEW: Reduced size */
+    height: 100px; /* NEW: Consistent height */
+    filter: drop-shadow(0 0 5px #00f0ff);
+    vertical-align: middle;
+    object-fit: contain; 
+}
+
+
+.score-summary {
+    background-color: #1a1a1a;
+    border: 4px solid #00f0ff;
+    padding: 15px;
+    margin: 20px auto;
+    width: 80%;
+}
+
+.score-summary .final-score {
+    font-size: 1.2em;
+    color: #00ffaa; 
+    border-top: 2px dashed #ff0077;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
+/* Change Player Button */
+#result-screen button:last-of-type {
+    background-color: #33001a; 
+    border-color: #ff0077;
+    color: #ff0077;
+    margin-top: 15px;
+    box-shadow: 0 0 5px #ff0077;
+}
+
+#result-screen button:last-of-type:hover {
+    background-color: #ff0077;
+    color: #000;
+}
+
+.note {
+    font-size: 0.7em;
+    color: #777;
+    margin-top: 15px;
+}

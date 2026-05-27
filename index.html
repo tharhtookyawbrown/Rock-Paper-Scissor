@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ピクセル拳アリーナ</title>
+    <link rel="stylesheet" href="style.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    </head>
+<body>
+    
+    <video autoplay muted loop id="background-video">
+        <source src="images/pixel-sakura.mp4" type="video/mp4">
+        ブラウザはHTML5ビデオをサポートしていません。
+    </video>
+    
+    <audio id="game-bgm" loop>
+        <source src="bgm/bgm.mp3" type="audio/mpeg">
+        ブラウザはオーディオ要素をサポートしていません。
+    </audio>
+    
+    <div id="round-announcement" class="hidden">
+        <p id="announcement-text"></p>
+    </div>
+    
+    <button id="music-control" onclick="toggleMusic()">🔊 BGM ON</button>
+
+    <div id="game-container">
+        <h1>⚔️ ピクセル拳アリーナ 🛡️</h1>
+        <div id="name-screen" class="game-screen">
+            <h2>ランクをロードするため名前を入力</h2>
+            <div id="player-input-wrapper"> 
+                <input type="text" id="player-name-input" placeholder="プレイヤー名" maxlength="15">
+            </div>
+            <button onclick="startGame()">アリーナ開始</button>
+            <p class="note">吠えろ、戦士たち!! 勝利をもぎ取れ！</p>
+        </div>
+
+        <div id="main-game" class="game-screen hidden">
+            <div id="player-info">
+                <span id="current-player-name"></span> | ランク: <span id="current-rank-title"></span> | スコア: <span id="current-score-display">0</span>
+                <div class="rank-progress-bar-container">
+                    <div id="rank-progress-bar"></div>
+                </div>
+            </div>
+            
+            <div id="round-display">ラウンド <span id="round-number">1</span>/5</div>
+
+            <div id="match-area">
+                <div class="choice-display">
+                    <h2>あなた</h2>
+                    <p id="player-choice-display">？</p>
+                </div>
+                <div class="choice-display">
+                    <h2>CPU</h2>
+                    <p id="cpu-choice-display">？</p>
+                </div>
+            </div>
+
+            <div id="match-message">手を選んでください！</div>
+
+            <div id="choices-menu">
+                <button id="btn-rock" onclick="playRound('rock')">グー</button>
+                <button id="btn-paper" onclick="playRound('paper')">パー</button>
+                <button id="btn-scissors" onclick="playRound('scissors')">チョキ</button>
+            </div>
+        </div>
+
+        <div id="result-screen" class="game-screen hidden">
+            <h2>マッチ完了！</h2> 
+            <p>記録: <span id="final-wins">0</span> 勝 / <span id="final-losses">0</span> 敗 / <span id="final-ties">0</span> 分</p>
+            <div class="score-summary">
+                <p>前スコア: <span id="old-score">0</span></p>
+                <p>スコア変動: <span id="score-change">0</span></p>
+                <p class="final-score">新スコア: <span id="new-score">0</span></p>
+            </div>
+            <button onclick="restartGame()">もう一度プレイ</button>
+            <button onclick="returnToNameInput()">プレイヤー変更</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

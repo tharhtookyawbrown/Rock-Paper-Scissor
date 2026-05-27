@@ -169,17 +169,17 @@ button {
 
 /* 1. Rock (グー) - Individual File */
 #btn-rock::before {
-    background-image: url('images/rockpixel.png'); 
+    background-image: url('rockpixel.png'); 
 }
 
 /* 2. Paper (パー) - Individual File */
 #btn-paper::before {
-    background-image: url('images/paperpixel.png');
+    background-image: url('paperpixel.png');
 }
 
 /* 3. チョキ (Scissors) - Individual File */
 #btn-scissors::before {
-    background-image: url('images/scissorspixel.png');
+    background-image: url('scissorspixel.png');
 }
 
 
